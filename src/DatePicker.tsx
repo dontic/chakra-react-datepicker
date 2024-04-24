@@ -55,9 +55,9 @@ const ChakraInputWithRef: ForwardRefRenderFunction<HTMLInputElement, InputProps>
 const CustomInput = forwardRef(ChakraInputWithRef);
 
 type Props<
-  CustomModifierNames extends string = never,
-  WithRange extends boolean | undefined = undefined
-> = Omit<ReactDatePickerProps<CustomModifierNames, WithRange>, 'todayButton'> & {
+  WithRange extends boolean | undefined = undefined,
+  WithMultiple extends boolean | undefined = undefined
+> = Omit<ReactDatePickerProps<WithRange, WithMultiple>, 'todayButton'> & {
   rootProps?: BoxProps;
   inputProps?: OmittedInputProps;
   datePickerSize?: ResponsiveValue<Size>;
@@ -65,8 +65,8 @@ type Props<
   extendDatePickerTheme?: (colorMode: ColorMode, provide: DatePickerTheme) => DatePickerTheme;
 };
 const DatePicker = <
-  CustomModifierNames extends string = never,
-  WithRange extends boolean | undefined = undefined
+  WithRange extends boolean | undefined = undefined,
+  WithMultiple extends boolean | undefined = undefined
 >({
   rootProps,
   inputProps,
@@ -74,7 +74,7 @@ const DatePicker = <
   datePickerColorSchema,
   extendDatePickerTheme,
   ...datePickerProps
-}: React.PropsWithChildren<Props<CustomModifierNames, WithRange>>) => {
+}: React.PropsWithChildren<Props<WithRange, WithMultiple>>) => {
   const colorMode = useColorMode().colorMode;
   const isLight = colorMode === 'light';
 
